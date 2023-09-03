@@ -1,7 +1,7 @@
 package com.example.jectpack.model
 
 import com.google.gson.annotations.SerializedName
-
+// Movie data class
 
 data class Movie(
 
