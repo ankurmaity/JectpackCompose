@@ -1,5 +1,6 @@
 package com.example.jectpack
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -119,7 +120,7 @@ class LoginActivity : ComponentActivity() {
             modifier = Modifier.fillMaxWidth(),
             trailingIcon = {
                 val image = if (isPasswordVisible) R.drawable.ic_password_show
-                else R.drawable.ic_password_show
+                else R.drawable.ic_password_hide
 
                 val description = if (isPasswordVisible) "Hide password" else "Show password"
                 IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
@@ -154,7 +155,7 @@ class LoginActivity : ComponentActivity() {
                     fontSize = 20.sp,
                     modifier = Modifier.padding(15.dp, 0.dp, 0.dp, 0.dp)
                 )
-                Spacer(Modifier.fillMaxHeight())
+                Spacer(Modifier.weight(1f))
                 Icon(
                     painter = painterResource(id = R.drawable.ic_forward),
                     contentDescription = "Login",
@@ -175,7 +176,6 @@ class LoginActivity : ComponentActivity() {
             CompositionLocalProvider(LocalMinimumTouchTargetEnforcement provides false) {
                 Checkbox(
                     checked = isRemember.value,
-//                modifier = Modifier.absoluteOffset((-12).dp, 0.dp),
                     onCheckedChange = { isRemember.value = it })
             }
             Text(
@@ -196,9 +196,10 @@ class LoginActivity : ComponentActivity() {
         ) {
             Text(text = "You don't have an account?", color = Color.Gray)
             Text(text = "Register", color = Color.Blue, modifier = Modifier.clickable(onClick = {
-                Toast.makeText(this@LoginActivity, "Register Clicked", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this@LoginActivity, MovieListActivity::class.java))
             }))
         }
     }
+
 
 }
